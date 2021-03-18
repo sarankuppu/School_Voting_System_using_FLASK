@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Voting System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <style>
+        body {
+            padding: 40px 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-gap: 20px;
+            align-items: stretch;
+        }
+        
+        .grid>article {
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+        }
+        
+        .grid>article img {
+            max-width: 100%;
+        }
+        
+        .grid .text {
+            padding: 20px;
+        }
+        
+        .name {
+            font-size: larger;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+        
+        .btn {
+            background-color: #1174ff;
+            color: whitesmoke;
+            padding: 15px 35px 15px 35px;
+            border-radius: 50px;
+            align-self: center;
+            margin-left: 90px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .btn:hover {
+            background-color: #0069D9;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            font-weight: bolder;
+            text-decoration: underline;
+        }
+        
+        .image {
+            height: 230px;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript">
+        function populate(s1, s2, s3, s4, s5) {
+            var s1 = document.getElementById(s1);
+            var s2 = document.getElementById(s2);
+            var s3 = document.getElementById(s3);
+            var s4 = document.getElementById(s4);
+            var s5 = document.getElementById(s5);
+            s2.innerHTML = "";
+            s3.innerHTML = "";
+            s4.innerHTML = "";
+            s5.innerHTML = "";
+            var category = [s2, s3, s4, s5];
+
+
+            if (s1.value == "Newton") {
+                var juniorSquadron = ["|", "Umesh|Umesh", "Bhoomi|Bhoomi"];
+                var seniorSquadron = ["|", "Daksh|Daksh", "Poorav|Poorav", "Vishnu|Vishnu"];
+                var houseCommander = ["|", "Yogesh|Yogesh", "Kashish|Kashish"];
+                var deputyHouseCommander = ["|", "Akshay|Akshay", "Kavitha|Kavitha"];
+            } else if (s1.value == "Edison") {
+                var juniorSquadron = ["|", "Deepakshi|Deepakshi", "Rakshith|Rakshith", "Ankitha|Ankitha"];
+                var seniorSquadron = ["|", "Jannath|Jannath", "Thanish|Thanish"];
+                var houseCommander = ["|", "Tamanna|Tamanna", "Monica|Monica"];
+                var deputyHouseCommander = ["|", "David|David", "Manmeeth|Manmeeth"];
+            } else if (s1.value == "Einstein") {
+                var juniorSquadron = ["|", "Anjali|Anjali", "Ojesh|Ojesh"];
+                var seniorSquadron = ["|", "Mohith|Mohith", "Garvith|Garvith"];
+                var houseCommander = ["|", "Sushma|Sushma", "Mukesh|Mukesh"];
+                var deputyHouseCommander = ["|", "Pranjal|Pranjal", "Sunil|Sunil"];
+            } else if (s1.value == "Tesla") {
+                var juniorSquadron = ["|", "Nipum|Nipum", "Rhithika|Rhithika"];
+                var seniorSquadron = ["|", "Saritha|Saritha", "Punith|Punith"];
+                var houseCommander = ["|", "Karthick|Karthick", "Vikran|Vikran"];
+                var deputyHouseCommander = ["|", "Mamta|Mamta", "Aryan|Aryan"];
+            }
+            var cal = [juniorSquadron, seniorSquadron, houseCommander, deputyHouseCommander]
+            for (var j = 0; j < cal.length; j++) {
+                for (var k = 0; k < cal[j].length; k++) {
+                    var pair = cal[j][k].split("|");
+                    var newOption = document.createElement("option");
+                    newOption.value = pair[0];
+                    newOption.innerHTML = pair[1];
+                    category[j].options.add(newOption);
+                }
+            }
+        }
+
+        function printf(name) {
+            if(name == "president")
+            {
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/ArinXI.jpg";
+                name.innerHTML="ARIN";
+                clas.innerHTML="XI"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/AvasthaXI.jpg";
+                name.innerHTML="AVASTA";
+                clas.innerHTML="XI"
+
+                document.getElementById("article2").style.visibility = 'hidden';
+                document.getElementById("article4").style.visibility = 'hidden';
+            }
+            else if (name=="vice president")
+            {
+                document.getElementById("article2").style.visibility = '';
+                document.getElementById("article4").style.visibility = '';
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/AjayXI.jpg";
+                name.innerHTML="AJAY";
+                clas.innerHTML="XI"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/ShabnamIX.jpg";
+                name.innerHTML="SHABNAM";
+                clas.innerHTML="IX"
+
+                var img=document.getElementById("img2");
+                var name=document.getElementById("name2");
+                var clas= document.getElementById("class2");
+                img.src="../static/SariyaX.jpeg";
+                name.innerHTML="SARIYA";
+                clas.innerHTML="X"
+
+                var img=document.getElementById("img4");
+                var name=document.getElementById("name4");
+                var clas= document.getElementById("class4");
+                img.src="../static/MahakX.jpg";
+                name.innerHTML="MAHAK";
+                clas.innerHTML="X"
+            }
+             else if (name=="sports minister")
+            {
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/AkashIX.jpg";
+                name.innerHTML="AKASH";
+                clas.innerHTML="IX"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/DeepaIX.jpg";
+                name.innerHTML="DEEPA";
+                clas.innerHTML="IX"
+
+                document.getElementById("article2").style.visibility = 'hidden';
+                document.getElementById("article4").style.visibility = 'hidden';
+            }
+             else if (name=="cultural minister")
+            {
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/AnshikaVIII.jpg";
+                name.innerHTML="ANSHIKA";
+                clas.innerHTML="VIII"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/DeepikaVIII.jpg";
+                name.innerHTML="DEEPIKA";
+                clas.innerHTML="VIII"
+
+                document.getElementById("article2").style.visibility = 'hidden';
+                document.getElementById("article4").style.visibility = 'hidden';
+            }
+             else if (name=="communication minister")
+            {
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/PriyankaVIII.jpg";
+                name.innerHTML="PRIYANKA";
+                clas.innerHTML="VIII"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/SakshiVIII.jpeg";
+                name.innerHTML="SAKSHI";
+                clas.innerHTML="VII"
+
+                document.getElementById("article2").style.visibility = 'hidden';
+                document.getElementById("article4").style.visibility = 'hidden';
+            }
+             else if (name=="literacy minister")
+            {
+                var img=document.getElementById("img1");
+                var name=document.getElementById("name1");
+                var clas= document.getElementById("class1");
+                img.src="../static/JyotiX.jpg";
+                name.innerHTML="JYOTI";
+                clas.innerHTML="X"
+
+                var img=document.getElementById("img3");
+                var name=document.getElementById("name3");
+                var clas= document.getElementById("class3");
+                img.src="../static/PoonamIX.jpg";
+                name.innerHTML="POONAM";
+                clas.innerHTML="IX"
+
+                document.getElementById("article2").style.visibility = 'hidden';
+                document.getElementById("article4").style.visibility = 'hidden';
+            }
+        }
+
+        function printg(house,name)
+        {
+            var house=document.getElementById(house);
+            if(name == "Junior Squadron")
+            {
+                if (house.value == "Tesla")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/NipunV.jpg";
+                    name.innerHTML = "NIPUN";
+                    clas.innerHTML = "V"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/RitikaVI.jpg";
+                    name.innerHTML = "RITIKA";
+                    clas.innerHTML = "VI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Newton")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/UmeshV.jpg";
+                    name.innerHTML = "UMESH";
+                    clas.innerHTML = "V"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/BoomiVI.jpg";
+                    name.innerHTML = "Boomi";
+                    clas.innerHTML = "VI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Edison")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/DeepakshiV.jpg";
+                    name.innerHTML = "DEEPAKSHI";
+                    clas.innerHTML = "V"
+
+                     document.getElementById("article2").style.visibility = '';
+                    var img = document.getElementById("img2");
+                    var name = document.getElementById("name2");
+                    var clas = document.getElementById("class2");
+                    img.src = "../static/AnkitaVI.jpeg";
+                    name.innerHTML = "ANKITA";
+                    clas.innerHTML = "VI"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/RakshitVI.jpg";
+                    name.innerHTML = "RAKSHIT";
+                    clas.innerHTML = "VI"
+
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Einstein")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/AnjaliV.jpg";
+                    name.innerHTML = "ANJALI";
+                    clas.innerHTML = "V"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/OjeshVI.jpg";
+                    name.innerHTML = "OJESH";
+                    clas.innerHTML = "VI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+            }
+            else if(name == "Senior Squadron")
+            {
+                if (house.value == "Tesla")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/SaritaVIII.jpg";
+                    name.innerHTML = "SARITA";
+                    clas.innerHTML = "VII"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/PunitVII.jpg";
+                    name.innerHTML = "PUNIT";
+                    clas.innerHTML = "VII"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Edison")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/JannatVI.jpg";
+                    name.innerHTML = "JANNAT";
+                    clas.innerHTML = "VI"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/TanishVII.jpg";
+                    name.innerHTML = "TANISH";
+                    clas.innerHTML = "VII"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Newton")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/DakshVII.jpg";
+                    name.innerHTML = "DAKSH";
+                    clas.innerHTML = "VII"
+
+                    document.getElementById("article2").style.visibility = '';
+                    var img = document.getElementById("img2");
+                    var name = document.getElementById("name2");
+                    var clas = document.getElementById("class2");
+                    img.src = "../static/PuravVII.jpg";
+                    name.innerHTML = "PURAV";
+                    clas.innerHTML = "VII"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/VishnuVIII.jpg";
+                    name.innerHTML = "VISHNU";
+                    clas.innerHTML = "VIII"
+
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Einstein")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/MohitVII.jpg";
+                    name.innerHTML = "MOHIT";
+                    clas.innerHTML = "VII"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/GarvithVII.jpg";
+                    name.innerHTML = "GARVITH";
+                    clas.innerHTML = "VII"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+            }
+            else if(name == "House Commander")
+            {
+                if (house.value == "Tesla")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/KartikX.jpg";
+                    name.innerHTML = "KARTIK";
+                    clas.innerHTML = "X"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/VikramXI.jpg";
+                    name.innerHTML = "VIKRAM";
+                    clas.innerHTML = "XI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Edison")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/TamannaX.jpg";
+                    name.innerHTML = "TAMANNA";
+                    clas.innerHTML = "X"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/MonikaX.jpg";
+                    name.innerHTML = "MONIKA";
+                    clas.innerHTML = "X"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Newton")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/YogeshXI.jpg";
+                    name.innerHTML = "YOGESH";
+                    clas.innerHTML = "XI"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/KashishX.jpg";
+                    name.innerHTML = "KASHISH";
+                    clas.innerHTML = "X"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Einstein")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/SushmaX.jpg";
+                    name.innerHTML = "SUSHMA";
+                    clas.innerHTML = "X"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/MukeshXI.jpg";
+                    name.innerHTML = "MUKESH";
+                    clas.innerHTML = "XI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+            }
+            else if(name == "Deputy House Commander")
+            {
+                if (house.value == "Tesla")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/MamtaIX.jpg";
+                    name.innerHTML = "MAMTA";
+                    clas.innerHTML = "IX"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/AryanIX.jpg";
+                    name.innerHTML = "ARYAN";
+                    clas.innerHTML = "IX"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Edison")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/DavidVIII.jpg";
+                    name.innerHTML = "DAVID";
+                    clas.innerHTML = "VIII"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/ManmeethXI.jpg";
+                    name.innerHTML = "MANMEETH";
+                    clas.innerHTML = "XI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Newton")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/AkshayXI.jpg";
+                    name.innerHTML = "AKSHAY";
+                    clas.innerHTML = "XI"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/KavitaVIII.jpg";
+                    name.innerHTML = "KAVITA";
+                    clas.innerHTML = "VIII"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+                else if (house.value == "Einstein")
+                {
+                    var img = document.getElementById("img1");
+                    var name = document.getElementById("name1");
+                    var clas = document.getElementById("class1");
+                    img.src = "../static/PranjalIX.jpg";
+                    name.innerHTML = "PRANJAL";
+                    clas.innerHTML = "IX"
+
+                    var img = document.getElementById("img3");
+                    var name = document.getElementById("name3");
+                    var clas = document.getElementById("class3");
+                    img.src = "../static/SunilXI.jpg";
+                    name.innerHTML = "SUNIL";
+                    clas.innerHTML = "XI"
+
+                    document.getElementById("article2").style.visibility = 'hidden';
+                    document.getElementById("article4").style.visibility = 'hidden';
+                }
+            }
+        }
+         function validate() {
+            if(document.myForm.name.value="" || document.myForm.house.value="" || document.myForm.president.value="" || document.myForm.vice president.value="")
+            {
+                document.getElementById("error").innerHTML="All fields are required";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="w3-display-container">
+        <div>
+            <p>
+                <center><strong style="font-size:120px;">Voting System</strong></center>
+            </p>
+            <div class="w3-row">
+                <div class="w3-half" style="background-image: url('../static/vote.png'); background-size: cover; font-size: 28px">
+                    <form action="/vote" method="POST">
+                        <table>
+                            <tr>
+                                <td>Name:</td>
+                                <td><input type="text" name="name" id="name"></td>
+                            </tr>
+                            <tr>
+                                <td>House:</td>
+                                <td>
+                                    <select name="house" id="house" onchange="populate(this.id,'JS','SS','HC','DHC')">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Newton">Newton</option>
+                                        <option value="Tesla">Tesla</option>
+                                        <option value="Einstein">Einstein</option>
+                                        <option value="Edison">Edison</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>President:</td>
+                                <td>
+                                    <select name="president" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Arin">Arin</option>
+                                        <option value="Avastha">Avastha</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vice President:</td>
+                                <td>
+                                    <select name="vice president" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Ajay">Ajay</option>
+                                        <option value="Shabnam">Shabnam</option>
+                                        <option value="Sariya">Sariya</option>
+                                        <option value="Mahak">Mahak</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sports Minister:</td>
+                                <td>
+                                    <select name="sports minister" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Akash">Akash</option>
+                                        <option value="Deepa">Deepa</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Cultural minister:</td>
+                                <td>
+                                    <select name="cultural minister" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Anshika">Anshika</option>
+                                        <option value="Deepika">Deepika</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Communication Minister: </td>
+                                <td>
+                                    <select name="communication minister" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Priyanka">Priyanka</option>
+                                        <option value="Sakshi">Sakshi</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Literacy minister:</td>
+                                <td><select name="literacy minister" onclick="printf(this.name)">
+                                        <option value="none" selected disabled hidden></option>
+                                        <option value="Jyoti">Jyoti</option>
+                                        <option value="Poonam">Poonam</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Junior Squadron:</td>
+                                <td><select name="Junior Squadron" id="JS" onclick="printg('house',this.name)"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Senior Squadron:</td>
+                                <td><select name="Senior Squadron" id="SS" onclick="printg('house',this.name)"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>House Commander:</td>
+                                <td>
+                                    <select name="House Commander" id="HC" onclick="printg('house',this.name)"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Deputy House Commander:</td>
+                                <td>
+                                    <select id="DHC" name="Deputy House Commander" onclick="printg('house',this.name)"></select>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <br>
+                        <center><input type="submit" value="Vote" onsubmit="validate()"></center>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="w3-quarter">
+                    <div class="w3-container">
+                        <main class="grid">
+                            <article id="article1">
+                                <img src="../static/Einstein.jpg" class="image" id="img1">
+                                <div class="text">
+                                    <h3 class="w3-center name" id="name1">Einstein</h3>
+                                    <h6 class="w3-center" id="class1"></h6>
+                                </div>
+                            </article>
+                            <article id="article2">
+                                <img src="../static/Newton.jpg" class="image" id="img2">
+                                <div class="text">
+                                    <h3 class="w3-center name" id="name2">Newton</h3>
+                                    <h6 class="w3-center" id="class2"></h6>
+                                </div>
+                            </article>
+                        </main>
+                    </div>
+                </div>
+
+                <div class="w3-quarter">
+                    <div class="w3-container">
+                        <main class="grid" id="grid2">
+                            <article id="article3">
+                                <img src="../static/tesla.jpg" class="image" id="img3">
+                                <div class="text">
+                                    <h3 class="w3-center name" id="name3">Tesla</h3>
+                                    <h6 class="w3-center" id="class3"></h6>
+                                </div>
+                            </article>
+                            <article id="article4">
+                                <img src="../static/Edison.jpg" class="image" id="img4">
+                                <div class="text">
+                                    <h3 class="w3-center name" id="name4">Edison</h3>
+                                    <h6 class="w3-center" id="class4"></h6>
+                                </div>
+                            </article>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
